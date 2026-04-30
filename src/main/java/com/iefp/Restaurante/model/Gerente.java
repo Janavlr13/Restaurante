@@ -26,7 +26,7 @@ public class Gerente {
 
     private List<Gerente> gerentes;
 
-    @OneToMany(mappedBy="medico")
+    @OneToMany(mappedBy="Gerente")
     private List<Reserva> reservas;
 }
 
