@@ -24,9 +24,9 @@ public class Gerente {
     private String endereco;
     private String email;
 
-    private List<Gerente> gerentes;
+    private List<Gerente> gerente;
 
-    @OneToMany(mappedBy="Gerente")
+    @OneToMany(mappedBy="medico")
     private List<Reserva> reservas;
 }
 

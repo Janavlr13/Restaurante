@@ -1,32 +1,25 @@
 package com.iefp.Restaurante.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import jakarta.persistence.*;
+import lombok.*;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Mesa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idMesa;
 
-    private Long id;
     private Integer numeroMesa;
     private Integer capacidade;
-    private String estado;
+    private String situacao;
 
-    private List<Mesa> mesas;
-
+    @OneToMany(mappedBy = "mesa")
+    private List<Reserva> reservas;
 }
 
 /*

@@ -1,10 +1,7 @@
 package com.iefp.Restaurante.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -13,31 +10,35 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Reserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idReserva;
 
     private LocalDate data;
     private LocalTime hora;
-    private Integer numeroPessoas;
+    private Integer numPessoas;
     private String estado;
 
-    private List<Reserva> reservas;
-
     @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @ManyToOne
+    @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
     @ManyToOne
+    @JoinColumn(name = "gerente_id")
     private Gerente gerente;
 
+    @ManyToOne
+    @JoinColumn(name = "mesa_id")
+    private Mesa mesa;
 
-
+    @OneToMany(mappedBy = "reserva")
+    private List<Notificacao> notificacoes;
 }
 
 /*
