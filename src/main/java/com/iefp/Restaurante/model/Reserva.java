@@ -21,25 +21,22 @@ public class Reserva {
     private Integer numPessoas;
     private String estado;
 
-    private List<Reserva> reserva;
-
     @ManyToOne
-    @JoinColumn(name = "idCliente")
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "idFuncionario")
+    @JoinColumn(name = "id_funcionario")
     private Funcionario funcionario;
 
     @ManyToOne
-    @JoinColumn(name = "idGerente")
+    @JoinColumn(name = "id_gerente")
     private Gerente gerente;
 
     @ManyToOne
-    @JoinColumn(name = "idMesa")
+    @JoinColumn(name = "id_mesa")
     private Mesa mesa;
 
-    @ManyToOne
-    @JoinColumn(name ="idNotificacao")
-    private Notificacao notificacao;
+    @OneToMany(mappedBy = "reserva")
+    private List<Notificacao> notificacoes;
 }

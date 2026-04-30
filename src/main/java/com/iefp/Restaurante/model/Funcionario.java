@@ -23,8 +23,6 @@ public class Funcionario {
     private String email;
     private String cargo;
 
-    private List<Funcionario> funcionario;
-
-    @OneToMany(mappedBy = "idFuncionario")
-    private List<Reserva> reserva;
+    @OneToMany(mappedBy = "funcionario")
+    private List<Reserva> reservas;
 }

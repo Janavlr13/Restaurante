@@ -19,9 +19,7 @@ public class Notificacao {
     private String mensagem;
     private LocalDateTime dataHora;
 
-    private List<Notificacao> notificacao;
-
     @ManyToOne
-    @JoinColumn(name = "idReserva")
+    @JoinColumn(name = "reserva")
     private Reserva reserva;
 }

@@ -18,8 +18,6 @@ public class Mesa {
     private Integer capacidade;
     private String situacao;
 
-    private List<Mesa> mesas;
-
-    @OneToMany(mappedBy = "idMesa")
-    private List<Reserva> reserva;
+    @OneToMany(mappedBy = "mesa")
+    private List<Reserva> reservas;
 }
