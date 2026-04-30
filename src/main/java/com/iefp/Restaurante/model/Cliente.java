@@ -19,20 +19,14 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     // Variáveis
-    private Long id;
+    private Long idCliente;
     private String nome;
     private String contato;
     private String email;
     private LocalDate dataNascimento;
 
-    private List<Reserva> reservas;
-}
+    private List<Cliente> cliente;
 
-/*
-Cliente - idCliente, nome, contacto
-Reserva - idReserva, data, hora, numPessoas, estado
-Mesa - idMesa, numeroMesa, capacidade, situacao
-Funcionário - idFuncionario, nome, cargo
-Gerente - idGerente, nome
-Notificação - idNotificacao, tipo, mensagem, dataHora
- */
+    @OneToMany (mappedBy = "idCliente")
+    private List <Reserva> reserva;
+}

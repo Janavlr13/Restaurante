@@ -14,38 +14,32 @@ public class Reserva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idReserva;
 
+    private Long idReserva;
     private LocalDate data;
     private LocalTime hora;
     private Integer numPessoas;
     private String estado;
 
+    private List<Reserva> reserva;
+
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "funcionario_id")
+    @JoinColumn(name = "idFuncionario")
     private Funcionario funcionario;
 
     @ManyToOne
-    @JoinColumn(name = "gerente_id")
+    @JoinColumn(name = "idGerente")
     private Gerente gerente;
 
     @ManyToOne
-    @JoinColumn(name = "mesa_id")
+    @JoinColumn(name = "idMesa")
     private Mesa mesa;
 
-    @OneToMany(mappedBy = "reserva")
-    private List<Notificacao> notificacoes;
+    @ManyToOne
+    @JoinColumn(name ="idNotificacao")
+    private Notificacao notificacao;
 }
-
-/*
-Cliente - idCliente, nome, contacto
-Reserva - idReserva, data, hora, numPessoas, estado
-Mesa - idMesa, numeroMesa, capacidade, situacao
-Funcionário - idFuncionario, nome, cargo
-Gerente - idGerente, nome
-Notificação - idNotificacao, tipo, mensagem, dataHora
- */

@@ -17,7 +17,8 @@ public class Gerente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
+    private Long idGerente;
     private String nome;
     private LocalDate dataNascimento;
     private String telefone;
@@ -26,15 +27,6 @@ public class Gerente {
 
     private List<Gerente> gerente;
 
-    @OneToMany(mappedBy="medico")
-    private List<Reserva> reservas;
+    @OneToMany(mappedBy="idGerente")
+    private List<Reserva> reserva;
 }
-
-/*
-Cliente - idCliente, nome, contacto
-Reserva - idReserva, data, hora, numPessoas, estado
-Mesa - idMesa, numeroMesa, capacidade, situacao
-Funcionário - idFuncionario, nome, cargo
-Gerente - idGerente, nome
-Notificação - idNotificacao, tipo, mensagem, dataHora
- */

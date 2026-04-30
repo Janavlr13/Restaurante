@@ -2,6 +2,8 @@ package com.iefp.Restaurante.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -12,20 +14,17 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFuncionario;
 
+    private Long idFuncionario;
     private String nome;
+    private LocalDate dataNascimento;
+    private String telefone;
+    private String endereco;
+    private String email;
     private String cargo;
 
-    @OneToMany(mappedBy = "funcionario")
-    private List<Reserva> reservas;
-}
+    private List<Funcionario> funcionario;
 
-/*
-Cliente - idCliente, nome, contacto
-Reserva - idReserva, data, hora, numPessoas, estado
-Mesa - idMesa, numeroMesa, capacidade, situacao
-Funcionário - idFuncionario, nome, cargo
-Gerente - idGerente, nome
-Notificação - idNotificacao, tipo, mensagem, dataHora
- */
+    @OneToMany(mappedBy = "idFuncionario")
+    private List<Reserva> reserva;
+}

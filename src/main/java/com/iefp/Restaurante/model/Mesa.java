@@ -12,21 +12,14 @@ public class Mesa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMesa;
 
+    private Long idMesa;
     private Integer numeroMesa;
     private Integer capacidade;
     private String situacao;
 
-    @OneToMany(mappedBy = "mesa")
-    private List<Reserva> reservas;
-}
+    private List<Mesa> mesas;
 
-/*
-Cliente - idCliente, nome, contacto
-Reserva - idReserva, data, hora, numPessoas, estado
-Mesa - idMesa, numeroMesa, capacidade, situacao
-Funcionário - idFuncionario, nome, cargo
-Gerente - idGerente, nome
-Notificação - idNotificacao, tipo, mensagem, dataHora
- */
+    @OneToMany(mappedBy = "idMesa")
+    private List<Reserva> reserva;
+}
