@@ -15,12 +15,12 @@ public class ClienteService {
 
     }
 
-    public List<Cliente> listarTodos(){
+    public List<Cliente> listarClientes(){
         return clienteRepository.findAll();
 
     }
 
-    public void guardar(Cliente cliente){
+    public void guardarCliente(Cliente cliente){
         clienteRepository.save(cliente);
     }
 }

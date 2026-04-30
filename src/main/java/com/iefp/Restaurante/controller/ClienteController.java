@@ -23,7 +23,7 @@ private final ClienteService clienteService;
     @GetMapping("/clientes")
     public String listarClientes(Model model) {
         model.addAttribute("mensagem", "Lista de Clientes");
-        model.addAttribute("lista", clienteService.listarTodos());
+        model.addAttribute("lista", clienteService.listarClientes());
         return "cliente";
     }
 
@@ -33,7 +33,7 @@ private final ClienteService clienteService;
                                     @RequestParam String email,
                                     @RequestParam LocalDate dataNascimento) {
         Cliente cliente = new Cliente(null, nome, contato, email, dataNascimento, null);
-        clienteService.guardar(cliente);
+        clienteService.guardarCliente(cliente);
         return "redirect:/clientes";
     }
 }
