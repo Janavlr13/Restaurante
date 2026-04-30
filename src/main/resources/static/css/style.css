@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f5f9fc;
+}
+
+h1 {
+    color: #0b5394;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th {
+    background-color: #d9eaf7;
+}
+
+th, td {
+    border: 1px solid #999;
+    padding: 10px;
+}
+
+button {
+    margin-right: 10px;
+    padding: 8px;
+}
+
+.botao{
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.destacado{
+    background-color: #fff2cc;
+}
+
+.coluna-nome{
+    font-weight: bold;
+    color: #123f5c;
+}
+.coluna-contato{
+    font-weight: bold;
+    color: #123f5c;
+}
+.coluna-dataNascimento{
+    font-weight: bold;
+    color: #123f5c;
+}

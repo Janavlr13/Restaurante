@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Clientes</h1>
+
+    <div id="tabelaClientes">
+        <h3 th:text = "${mensagem}"></h3>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Contato</th>
+                <th>Data de Nascimento</th>
+            </tr>
+
+            <tr th:each="c : ${lista}">
+                <td class="coluna-nome" th:text="${c.nome}"></td>
+                <td class="coluna-contato" th:text="${c.contato}"></td>
+                <td class="coluna-dataNascimento"  th:text="${c.dataNascimento}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <button class="botao" onclick="marcarCliente()">Marcar cliente</button>
+    <button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
+
+    <h2>Novo Cliente</h2>
+    <form action="/clientes" method="post">
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="text" name="contato" placeholder="Contato">
+        <input type="date" name="dataNascimento" placeholder="Data de Nascimento">
+        <button type="submit">Adicionar</button>
+    </form>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
