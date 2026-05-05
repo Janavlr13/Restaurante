@@ -28,12 +28,15 @@ public class ReservaController {
     }
 
     @PostMapping("/reservas")
-    public String guardarReserva(@RequestParam LocalDate data,
-                                 @RequestParam LocalTime hora,
-                                 @RequestParam Integer numPessoas,
-                                 @RequestParam String estado) {
-        Reserva reserva = new Reserva(null, data, hora, numPessoas, estado, null, null, null, null, null);
-        reservaService.guardarReserva(reserva);
+    public String guardarReserva(LocalDate data,
+                                 LocalTime hora,
+                                 Integer numPessoas,
+                                 String estado,
+                                 Long id_cliente,
+                                 Long id_funcionario,
+                                 Long ig_gerente,
+                                 Long id_mesa) {
+        reservaService.guardarReserva(data, hora, numPessoas, estado, id_cliente, id_funcionario, ig_gerente, id_mesa);
         return "redirect:/reservas";
     }
 
