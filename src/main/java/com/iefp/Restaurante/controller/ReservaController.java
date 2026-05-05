@@ -1,12 +1,11 @@
 package com.iefp.Restaurante.controller;
 
-import com.iefp.Restaurante.model.Reserva;
-import com.iefp.Restaurante.repository.service.ReservaService;
+import com.iefp.Restaurante.repository.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,15 +14,27 @@ import java.time.LocalTime;
 public class ReservaController {
 
     private final ReservaService reservaService;
+    private final ClienteService clienteService;
+    private final FuncionarioService funcionarioService;
+    private final GerenteService gerenteService;
+    private final MesaService mesaService;
 
-    public ReservaController(ReservaService reservaService) {
+    public ReservaController(ReservaService reservaService, ClienteService clienteService, FuncionarioService funcionarioService, GerenteService gerenteService, MesaService mesaService) {
         this.reservaService = reservaService;
+        this.clienteService = clienteService;
+        this.funcionarioService = funcionarioService;
+        this.gerenteService = gerenteService;
+        this.mesaService = mesaService;
     }
 
     @GetMapping("/reservas")
     public String listarReservas(Model model) {
         model.addAttribute("mensagem", "Reservas realizadas");
         model.addAttribute("lista", reservaService.listarReservas());
+        model.addAttribute("clientes", clienteService.listarClientes());
+        model.addAttribute("funcionarios", funcionarioService.listarFuncionarios());
+        model.addAttribute("gerentes", gerenteService.listarGerentes());
+        model.addAttribute("mesas", mesaService.listarMesas());
         return "reservas";
     }
 
