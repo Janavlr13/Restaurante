@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Reservas</h1>
+
+<div id="tabelaReservas">
+    <h3 th:text = "${mensagem}"></h3>
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Hora</th>
+            <th>Número de Pessoas</th>
+            <th>Estado</th>
+            <th>Cliente</th>
+            <th>Funcionário</th>
+            <th>Gerente</th>
+            <th>Mesa</th>
+        </tr>
+
+        <tr th:each="c : ${lista}">
+            <td class="coluna-data" th:text="${c.data}"></td>
+            <td class="coluna-hora" th:text="${c.hora}"></td>
+            <td class="coluna-numPessoas"  th:text="${c.numPessoas}"></td>
+            <td class="coluna-estado" th:text="${c.estado}"></td>
+            <td class="coluna-cliente" th:text="${c.cliente.nome}"></td>
+            <td class="coluna-funcionario" th:text="${c.funcionario.nome}"></td>
+            <td class="coluna-gerente" th:text="${c.gerente.nome}"></td>
+            <td class="coluna-mesa" th:text="${c.mesa.numeroMesa}"></td>
+        </tr>
+    </table>
+</div>
+
+<button class="botao" onclick="guardarReserva()">Marcar Reserva</button>
+<button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
+
+<h2>Nova Reserva</h2>
+<form action="/reservas" method="post">
+
+    <div>
+        <label for="cliente">Cliente:</label>
+        <select name="cliente" id="cliente" required>
+            <option th:each = "cliente: ${clientes}"
+                    th:value="${cliente.id}"
+                    th:text = "${cliente.nome}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="funcionario">Funcionário Responsável:</label>
+        <select name="funcionario" id="funcionario">
+            <option th:each = "funcionario : ${funcionarios}"
+                    th:value="${funcionario.id}"
+                    th:text = "${funcionario.nome}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="gerente">Gerente de Turno:</label>
+        <select name="gerente" id="gerente">
+            <option th:each = "gerente : ${gerentes}"
+                    th:value="${gerente.id}"
+                    th:text = "${gerente.nome}">
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="mesa">Nº Mesa:</label>
+        <select name="mesa" id="mesa">
+            <option th:each = "mesa : ${mesas}"
+                    th:value="${mesa.id}"
+                    th:text = "${mesa.numeroMesa}">
+            </option>
+        </select>
+    </div>
+
+    <hr>
+
+    <div>
+        <label for="data">Data e Hora:</label>
+        <input type="date" id="data" name="data" required>
+        <input type="time" id="hora" name="hora" required>
+    </div>
+    <div>
+        <label for="numPessoas">Número de Pessoas:</label>
+        <input type="number" id="numPessoas" name="numPessoas" min="1" placeholder="Ex: 4">
+    </div>
+    <div>
+        <label for="estado">Estado da Reserva:</label>
+        <select name="estado" id="estado">
+            <option value="em_progresso">Em progresso</option>
+            <option value="concluido">Concluído</option>
+            <option value="cancelado">Cancelado</option>
+        </select>
+    </div>
+    <hr>
+    <br><br>
+    <button type="submit">Adicionar Reserva</button>
+
+</form>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
