@@ -3,7 +3,7 @@ package com.iefp.Restaurante.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Entity
 @Data
@@ -20,6 +20,6 @@ public class Notificacao {
     private LocalDateTime dataHora;
 
     @ManyToOne
-    @JoinColumn(name = "reserva")
+    @JoinColumn(name = "id_reserva")
     private Reserva reserva;
 }
