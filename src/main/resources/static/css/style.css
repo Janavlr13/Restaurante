@@ -15,8 +15,6 @@ body {
     background-color: #f5f9fc;
 }
 
-
-
 h1 {
     color: #fcfcfc !important;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
@@ -38,6 +36,20 @@ h2 {
 h1 { border-bottom: 4px solid #90c5f5; padding-bottom: 15px; }
 h2 { border-bottom: 4px solid #90c5f5; margin-top: 30px; }
 
+h3 {
+    color: #fcfcfc !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    background-color: rgba(6, 66, 121, 0.7);
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: block;
+    width: 95%;
+    margin: 20px auto;
+    border-bottom: 4px solid #90c5f5;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
 hr {
     border: 0;
     border-top: 1px solid #ccc;
@@ -48,12 +60,33 @@ hr {
    2. TABELAS (LISTAGENS)
    ========================================================================== */
 table {
-    width: 100%;
+    width: 100% !important;
     border-collapse: collapse;
-    margin-top: 15px;
+    margin-top: 0;
     background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: none;
 }
+
+#tabelaClientes,
+#tabelaFuncionarios,
+#tabelaGerentes,
+#tabelaReservas,
+#tabelaMesas,
+#tabelaNotificacoes {
+    width: 95%;
+    margin: 0 auto 30px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Remover as bordas para ficar arredondado */
+tr:first-child th:first-child { border-top-left-radius: 10px; }
+tr:first-child th:last-child { border-top-right-radius: 10px; }
+tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 
 th {
     background-color: #d9eaf7;
@@ -64,6 +97,8 @@ th {
 th, td {
     border: 1px solid #ccc;
     padding: 12px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 tr:nth-child(even) { background-color: #fafafa; }
@@ -128,26 +163,36 @@ button, .botao {
     border: none;
     border-radius: 4px;
     font-weight: bold;
-    transition: background 0.3s;
+    transition: background 0.4s;
     margin-right: 10px;
 }
 
 /* Botão Padrão */
 button {
-    background-color: #e0e0e0;
-    color: #333;
+    background-color: #d9eaf7;
+    color: #0b5394;
 }
 
-button:hover { background-color: #d0d0d0; }
+button:hover { background-color: #90c5f5; }
 
 /* Botão de Sucesso (Adicionar/Gravar) */
 button[type="submit"], .botao-sucesso {
     background-color: #27ae60;
     color: white;
-    margin-top: 10px;
+    display: block;
+    min-width: 200px;
+    margin: 20px auto 0;
 }
 
 button[type="submit"]:hover { background-color: #219150; }
+
+.accoes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    width: 100%;
+}
 
 /* ==========================================================================
    5. DASHBOARD (HOME)
@@ -161,6 +206,7 @@ button[type="submit"]:hover { background-color: #219150; }
 }
 
 .card {
+    display: flex;
     text-decoration: none;
     color: inherit;
 }
@@ -176,6 +222,7 @@ button[type="submit"]:hover { background-color: #219150; }
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 1;
 }
 
 .card-content:hover {
@@ -186,13 +233,25 @@ button[type="submit"]:hover { background-color: #219150; }
 
 .card-content h3 {
     margin-top: 0;
-    color: #0b5394;
+    color: #0b5394 !important;
     font-size: 1.4em;
+    min-height: 2.5em;
+    background-color: transparent !important;
+    display: block;
+    width: auto !important;
+    border-bottom: none !important;
+    text-shadow: none !important;
+    margin-bottom: 10px;
+    padding: 0;
 }
 
 .card-content p {
     color: #666;
     margin-bottom: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 /* ==========================================================================

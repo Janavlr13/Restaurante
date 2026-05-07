@@ -49,8 +49,18 @@ function toggleTabela(){
     let tabela = document.getElementById("tabelaClientes");
     if(tabela.style.display === "none"){
         tabela.style.display = "table";
+        tabela.style.width = "100%";
     } else {
         tabela.style.display = "none";
+    }
+}
+
+function mostrarNovoCliente() {
+    var inserirNovoCliente = document.getElementById("novoCliente");
+    if(inserirNovoCliente.style.display === "none"){
+        inserirNovoCliente.style.display = "block";
+    } else {
+        inserirNovoCliente.style.display = "none";
     }
 }
 
