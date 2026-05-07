@@ -5,11 +5,50 @@
     <title>Sistema de Gestão de Reservas</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <body>
 
 <header class="main-header">
-    <h1>🍽️ Gestão do Restaurante</h1>
+    <h1>  🍽 Restaurante - Menu de Gestão 🍽  </h1>
 </header>
+
+    <nav class="main-nav">
+        <a href="/" class='card'>
+            <div class='card-content'>
+                <span class="material-symbols-outlined">home</span>
+            </div>
+        </a>
+        <a href="/reservas" class='card'>
+            <div class='card-content'>
+                <h4>Reservas</h4>
+            </div>
+        </a>
+        <a href="/clientes" class='card'>
+            <div class='card-content'>
+                <h4>Clientes</h4>
+            </div>
+        </a>
+        <a href="/mesas" class='card'>
+            <div class='card-content'>
+                <h4>Mesas</h4>
+            </div>
+        </a>
+        <a href="/funcionarios" class='card'>
+            <div class='card-content'>
+                <h4>Funcionários</h4>
+            </div>
+        </a>
+        <a href="/gerentes" class='card'>
+            <div class='card-content'>
+                <h4>Gerentes</h4>
+            </div>
+        </a>
+        <a href="/notificacoes" class='card'>
+            <div class='card-content'>
+                <h4>Notificações</h4>
+            </div>
+        </a>
+    </nav>
 
 <main class="dashboard-container">
     <nav class="dashboard-grid">
@@ -44,14 +83,14 @@
 
         <a href="/gerentes" class="card">
             <div class="card-content">
-                <h3>💼 Gerentes</h3>
+                <h3>💶 Gerentes</h3>
                 <p>Administração e responsáveis de turno.</p>
             </div>
         </a>
 
         <a href="/notificacoes" class="card">
             <div class="card-content">
-                <h3>🔔 Notificações</h3>
+                <h3>📨 Notificações</h3>
                 <p>Envio de SMS/E-mail e histórico de mensagens.</p>
             </div>
         </a>

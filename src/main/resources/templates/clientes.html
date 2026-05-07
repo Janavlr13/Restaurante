@@ -5,8 +5,48 @@
     <title>Clientes</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 <body>
-    <h1>Clientes</h1>
+    <header class="main-header">
+        <h2>Clientes</h2>
+    </header>
+    <nav class="main-nav">
+        <a href="/" class='card'>
+            <div class='card-content'>
+                <span class="material-symbols-outlined">home</span>
+            </div>
+        </a>
+        <a href="/reservas" class='card'>
+            <div class='card-content'>
+                <h4>Reservas</h4>
+            </div>
+        </a>
+        <a href="/clientes" class='card'>
+            <div class='card-content'>
+                <h4>Clientes</h4>
+            </div>
+        </a>
+        <a href="/mesas" class='card'>
+            <div class='card-content'>
+                <h4>Mesas</h4>
+            </div>
+        </a>
+        <a href="/funcionarios" class='card'>
+            <div class='card-content'>
+                <h4>Funcionários</h4>
+            </div>
+        </a>
+        <a href="/gerentes" class='card'>
+            <div class='card-content'>
+                <h4>Gerentes</h4>
+            </div>
+        </a>
+        <a href="/notificacoes" class='card'>
+            <div class='card-content'>
+                <h4>Notificações</h4>
+            </div>
+        </a>
+    </nav>
 
     <div id="tabelaClientes">
         <h3 th:text = "${mensagem}"></h3>
@@ -30,7 +70,7 @@
     <button class="botao" onclick="marcarCliente()">Marcar Clientes</button>
     <button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
 
-    <h2>Novo Cliente</h2>
+    <h3>Novo Cliente</h3>
     <form action="/clientes" method="post" class="form-container">
         <div>
             <label for="nome">Nome Completo:</label>

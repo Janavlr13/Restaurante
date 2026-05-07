@@ -17,12 +17,26 @@ body {
 
 
 
-h1, h2 {
-    color: #0b5394;
+h1 {
+    color: #fcfcfc !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    background-color: rgba(6, 66, 121, 0.7);
+    padding: 10px 10px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
-h1 { border-bottom: 2px solid #0b5394; padding-bottom: 10px; }
-h2 { margin-top: 40px; }
+h2 {
+    color: #fcfcfc !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    background-color: rgba(6, 66, 121, 0.7);
+    padding: 10px 10px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+h1 { border-bottom: 4px solid #90c5f5; padding-bottom: 15px; }
+h2 { border-bottom: 4px solid #90c5f5; margin-top: 30px; }
 
 hr {
     border: 0;
@@ -143,6 +157,7 @@ button[type="submit"]:hover { background-color: #219150; }
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
     margin-top: 30px;
+    align-items: stretch;
 }
 
 .card {
@@ -154,10 +169,13 @@ button[type="submit"]:hover { background-color: #219150; }
     background: white;
     border: 1px solid #e0e0e0;
     border-radius: 12px;
-    padding: 30px;
+    padding: 20px;
     text-align: center;
     transition: all 0.3s ease;
-    height: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card-content:hover {
@@ -182,5 +200,55 @@ button[type="submit"]:hover { background-color: #219150; }
    ========================================================================== */
 .destacado { background-color: #fff2cc; }
 
-.main-header { text-align: center; margin-bottom: 50px; }
-.main-footer { text-align: center; margin-top: 60px; color: #999; font-size: 0.8em; }
+.main-header { text-align: center; margin-bottom: 40px; }
+.main-footer {
+    text-align: center;
+    margin-bottom: 100px;
+    color: #a0a3a6;
+    font-size: 0.8em; }
+
+/* ==========================================================================
+   7. BARRA DE NAVEGAÇÃO
+   ========================================================================== */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.main-nav .card-content {
+    padding: 6px 12px;
+    min-width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-nav .card-content h4 {
+    margin: 0;
+    color: #0b5394;
+    font-size: 1em;
+}
+
+.main-nav .card:hover .card-content {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-color: #0b5394;
+    background-color: #f1f7fd;
+}
+
+.main-nav .material-symbols-outlined {
+    font-size: 24px;
+    color: #0b5394;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-nav .card-content {
+    min-width: 60px;
+    height: 40px;
+}
