@@ -19,7 +19,7 @@ public class GerenteController {
     @GetMapping("/gerentes")
     public String listarGerentes(Model model) {
         model.addAttribute("lista", gerenteService.listarGerentes());
-        return "gerentes/lista";
+        return "gerentes";
     }
 
     @PostMapping("/gerentes")
