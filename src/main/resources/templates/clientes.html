@@ -22,7 +22,7 @@
                 <td class="coluna-nome" th:text="${c.nome}"></td>
                 <td class="coluna-contato" th:text="${c.contato}"></td>
                 <td class="coluna-email" th:text="${c.email}"></td>
-                <td class="coluna-dataNascimento"  th:text="${#temporals.format(c.dataNascimento, 'dd/MM/yyyy')}"></td>
+                <td class="coluna-dataNascimento"  th:text="${c.dataNascimento != null ? #temporals.format(c.dataNascimento, 'dd/MM/yyyy') : ''}"></td>
             </tr>
         </table>
     </div>

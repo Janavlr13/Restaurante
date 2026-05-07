@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MesaController {
@@ -18,14 +19,17 @@ public class MesaController {
 
     @GetMapping("/mesas")
     public String listarMesas(Model model) {
+        model.addAttribute("mensagem", "Lista de Mesas");
         model.addAttribute("lista", mesaService.listarMesas());
-        return "mesas";
+        return "mesas"; // igual ao nome to ficheiro html
     }
 
     @PostMapping("/mesas")
-    public String guardarMesa(Mesa mesa) {
+    public String adicionarMesa(@RequestParam Integer numeroMesa,
+                                @RequestParam Integer capacidade,
+                                @RequestParam String situacao) {
+        Mesa mesa = new Mesa(null, numeroMesa, capacidade, situacao, null);
         mesaService.guardarMesa( mesa );
         return "redirect:/mesas";
     }
-
 }
