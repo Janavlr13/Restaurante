@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestão de Reservas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="main-header">
+    <h1>🍽️ Gestão do Restaurante</h1>
+</header>
+
+<main class="dashboard-container">
+    <nav class="dashboard-grid">
+
+        <a href="/reservas" class="card">
+            <div class="card-content">
+                <h3>📅 Reservas</h3>
+                <p>Gerir horários, datas e estados das reservas.</p>
+            </div>
+        </a>
+
+        <a href="/clientes" class="card">
+            <div class="card-content">
+                <h3>👤 Clientes</h3>
+                <p>Registo de contactos e histórico de clientes.</p>
+            </div>
+        </a>
+
+        <a href="/mesas" class="card">
+            <div class="card-content">
+                <h3>🪑 Mesas</h3>
+                <p>Configurar disposição e capacidade das mesas.</p>
+            </div>
+        </a>
+
+        <a href="/funcionarios" class="card">
+            <div class="card-content">
+                <h3>🧑‍🍳 Funcionários</h3>
+                <p>Gestão da equipa e cargos.</p>
+            </div>
+        </a>
+
+        <a href="/gerentes" class="card">
+            <div class="card-content">
+                <h3>💼 Gerentes</h3>
+                <p>Administração e responsáveis de turno.</p>
+            </div>
+        </a>
+
+        <a href="/notificacoes" class="card">
+            <div class="card-content">
+                <h3>🔔 Notificações</h3>
+                <p>Envio de SMS/E-mail e histórico de mensagens.</p>
+            </div>
+        </a>
+
+    </nav>
+</main>
+
+<footer class="main-footer">
+    <p>&copy; 2026 - Sistema de Gestão de Reservas Pro</p>
+</footer>
+
+</body>
+</html>

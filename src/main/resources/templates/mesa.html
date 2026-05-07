@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Mesas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Mesas</h1>
+
+<div id="tabelaMesas">
+    <h3 th:text = "${mensagem}"></h3>
+    <table>
+        <tr>
+            <th>Número da Mesa</th>
+            <th>Capacidade (Lugares)</th>
+            <th>Situação de Uso</th>
+        </tr>
+
+        <tr th:each="m : ${lista}">
+            <td class="coluna-numeroMesa" th:text="${m.numeroMesa}"></td>
+            <td class="coluna-capacidade" th:text="${m.capacidade}"></td>
+            <td th:class="${'coluna-situacao ' + m.situacao}" th:text="${m.situacao}"></td>
+        </tr>
+    </table>
+</div>
+
+<button class="botao" onclick="guardarMesa()">Adicionar Mesa</button>
+<button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
+
+<h2>Nova Mesa</h2>
+<form action="/mesas" method="post" class="form-container">
+    <div>
+        <label for="numeroMesa">Número da Mesa:</label>
+        <input type="number" id="numeroMesa" name="numeroMesa" min="1" placeholder="Ex: 5" required>
+    </div>
+
+    <div>
+        <label for="capacidade">Capacidade (Lugares):</label>
+        <input type="number" id="capacidade" name="capacidade" min="1" max="20" placeholder="Ex: 4" required>
+    </div>
+
+    <div>
+        <label for="situacao">Situação Inicial:</label>
+        <select name="situacao" id="situacao">
+            <option value="Livre">Livre</option>
+            <option value="Ocupada">Ocupada</option>
+            <option value="Reservada">Reservada</option>
+            <option value="Manutenção">Em Manutenção</option>
+        </select>
+    </div>
+
+    <button type="submit">Adicionar Mesa</button>
+
+</form>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Notificações</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Histórico de Notificações</h1>
+
+<div id="tabelaNotificacoes">
+    <h3 th:text="${mensagem_topo}"></h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Data e Hora</th>
+            <th>Tipo</th>
+            <th>Mensagem</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="n : ${lista}">
+            <td class="coluna-dataHora" th:text="${#temporals.format(n.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+            <td class="coluna-tipo" th:text="${n.tipo}"></td>
+            <td class="coluna-mensagem" th:text="${n.mensagem}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="botoes-controlo">
+    <button class="botao" onclick="toggleTabela()">Mostrar/Esconder Histórico</button>
+</div>
+
+<hr>
+
+<h2>Nova Notificação</h2>
+<form action="/notificacoes" method="post" class="form-container">
+    <div>
+        <label for="dataHora">Data e Hora de Envio:</label>
+        <input type="datetime-local" id="dataHora" name="dataHora" required>
+    </div>
+
+    <div>
+        <label for="tipo">Tipo de Notificação:</label>
+        <select name="tipo" id="tipo" required>
+            <option value="" disabled selected>Tipo:</option>
+            <option value="E-mail">E-mail</option>
+            <option value="SMS">SMS</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Push">App Push</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="mensagem">Conteúdo da Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva aqui o texto da notificação..." required></textarea>
+    </div>
+
+    <button type="submit" class="botao-sucesso">Enviar Notificação</button>
+</form>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

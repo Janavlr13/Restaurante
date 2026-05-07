@@ -1,50 +1,178 @@
+/* ==========================================================================
+   1. ESTILOS GERAIS E TIPOGRAFIA
+   ========================================================================== */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px;
     background-color: #f5f9fc;
+    color: #333;
+    line-height: 1.6;
 }
 
-h1 {
+h1, h2 {
     color: #0b5394;
 }
 
+h1 { border-bottom: 2px solid #0b5394; padding-bottom: 10px; }
+h2 { margin-top: 40px; }
+
+hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 25px 0;
+}
+
+/* ==========================================================================
+   2. TABELAS (LISTAGENS)
+   ========================================================================== */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 th {
     background-color: #d9eaf7;
+    color: #0b5394;
+    text-align: left;
 }
 
 th, td {
-    border: 1px solid #999;
+    border: 1px solid #ccc;
+    padding: 12px;
+}
+
+tr:nth-child(even) { background-color: #fafafa; }
+tr:hover { background-color: #f1f7fd; }
+
+/* Classes específicas das colunas que já tinhas */
+.coluna-nome, .coluna-contato, .coluna-dataNascimento {
+    font-weight: bold;
+    color: #123f5c;
+}
+
+/* Cores para Estados (Dinâmico) */
+.em_progresso { color: #f39c12; font-weight: bold; }
+.concluido { color: #27ae60; font-weight: bold; }
+.cancelado { color: #e74c3c; font-weight: bold; }
+
+/* ==========================================================================
+   3. FORMULÁRIOS (CRIAÇÃO)
+   ========================================================================== */
+.form-container {
+    max-width: 500px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container div {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
+.form-container input:focus,
+.form-container select:focus {
+    border-color: #0b5394;
+    outline: none;
+    box-shadow: 0 0 5px rgba(11, 83, 148, 0.2);
+}
+
+/* ==========================================================================
+   4. BOTÕES
+   ========================================================================== */
+button, .botao {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s;
+    margin-right: 10px;
+}
+
+/* Botão Padrão */
 button {
-    margin-right: 10px;
-    padding: 8px;
+    background-color: #e0e0e0;
+    color: #333;
 }
 
-.botao{
+button:hover { background-color: #d0d0d0; }
+
+/* Botão de Sucesso (Adicionar/Gravar) */
+button[type="submit"], .botao-sucesso {
+    background-color: #27ae60;
+    color: white;
     margin-top: 10px;
-    margin-right: 10px;
-}
-.destacado{
-    background-color: #fff2cc;
 }
 
-.coluna-nome{
-    font-weight: bold;
-    color: #123f5c;
+button[type="submit"]:hover { background-color: #219150; }
+
+/* ==========================================================================
+   5. DASHBOARD (HOME)
+   ========================================================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
 }
-.coluna-contato{
-    font-weight: bold;
-    color: #123f5c;
+
+.card {
+    text-decoration: none;
+    color: inherit;
 }
-.coluna-dataNascimento{
-    font-weight: bold;
-    color: #123f5c;
+
+.card-content {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
 }
+
+.card-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: #0b5394;
+}
+
+.card-content h3 {
+    margin-top: 0;
+    color: #0b5394;
+    font-size: 1.4em;
+}
+
+.card-content p {
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   6. UTILITÁRIOS
+   ========================================================================== */
+.destacado { background-color: #fff2cc; }
+
+.main-header { text-align: center; margin-bottom: 50px; }
+.main-footer { text-align: center; margin-top: 60px; color: #999; font-size: 0.8em; }

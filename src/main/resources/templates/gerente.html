@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerentes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Gerentes</h1>
+
+<div id="tabelaGerentes">
+    <h3 th:text = "${mensagem}"></h3>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>Contato</th>
+            <th>Email</th>
+            <th>Data de Nascimento</th>
+            <th>Endereço</th>
+        </tr>
+
+        <tr th:each="g : ${lista}">
+            <td class="coluna-nome" th:text="${g.nome}"></td>
+            <td class="coluna-contato" th:text="${g.contato}"></td>
+            <td class="coluna-email" th:text="${g.email}"></td>
+            <td class="coluna-dataNascimento"  th:text="${#temporals.format(g.dataNascimento, 'dd/MM/yyyy')}"></td>
+            <td class="coluna-endereco" th:text="${g.endereco}"></td>
+        </tr>
+    </table>
+</div>
+
+<button class="botao" onclick="guardarGerente()">Adicionar Gerente</button>
+<button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
+
+<h2>Novo Gerente</h2>
+<form action="/gerentes" method="post" class="form-container">
+    <div>
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+    </div>
+    <div>
+        <label for="contato">Contacto:</label>
+        <input type="tel" id="contato" name="contato"
+               placeholder="Ex: 912345678"
+               pattern="[0-9]{9,}"
+               title="O contacto deve ter pelo menos 9 dígitos numéricos" required>
+    </div>
+    <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+    </div>
+    <div>
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input type="date" id="dataNascimento" name="dataNascimento" required>
+    </div>
+    <div>
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Cidade" required>
+    </div>
+
+
+    <button type="submit">Adicionar Gerente</button>
+
+</form>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

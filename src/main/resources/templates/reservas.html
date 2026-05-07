@@ -22,15 +22,15 @@
             <th>Mesa</th>
         </tr>
 
-        <tr th:each="c : ${lista}">
-            <td class="coluna-data" th:text="${c.data}"></td>
-            <td class="coluna-hora" th:text="${c.hora}"></td>
-            <td class="coluna-numPessoas"  th:text="${c.numPessoas}"></td>
-            <td class="coluna-estado" th:text="${c.estado}"></td>
-            <td class="coluna-cliente" th:text="${c.cliente.nome}"></td>
-            <td class="coluna-funcionario" th:text="${c.funcionario.nome}"></td>
-            <td class="coluna-gerente" th:text="${c.gerente.nome}"></td>
-            <td class="coluna-mesa" th:text="${c.mesa.numeroMesa}"></td>
+        <tr th:each="r : ${lista}">
+            <td class="coluna-data" th:text="${r.data}"></td>
+            <td class="coluna-hora" th:text="${r.hora}"></td>
+            <td class="coluna-numPessoas"  th:text="${r.numPessoas}"></td>
+            <td class="coluna-estado" th:text="${r.estado}"></td>
+            <td class="coluna-cliente" th:text="${r.cliente.nome}"></td>
+            <td class="coluna-funcionario" th:text="${r.funcionario.nome}"></td>
+            <td class="coluna-gerente" th:text="${r.gerente.nome}"></td>
+            <td class="coluna-mesa" th:text="${r.mesa.numeroMesa}"></td>
         </tr>
     </table>
 </div>

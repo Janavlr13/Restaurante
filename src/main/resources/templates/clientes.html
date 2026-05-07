@@ -14,26 +14,44 @@
             <tr>
                 <th>Nome</th>
                 <th>Contato</th>
+                <th>Email</th>
                 <th>Data de Nascimento</th>
             </tr>
 
             <tr th:each="c : ${lista}">
                 <td class="coluna-nome" th:text="${c.nome}"></td>
                 <td class="coluna-contato" th:text="${c.contato}"></td>
-                <td class="coluna-dataNascimento"  th:text="${c.dataNascimento}"></td>
+                <td class="coluna-email" th:text="${c.email}"></td>
+                <td class="coluna-dataNascimento"  th:text="${#temporals.format(c.dataNascimento, 'dd/MM/yyyy')}"></td>
             </tr>
         </table>
     </div>
 
-    <button class="botao" onclick="marcarCliente()">Marcar cliente</button>
+    <button class="botao" onclick="marcarCliente()">Marcar Cliente</button>
     <button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
 
     <h2>Novo Cliente</h2>
-    <form action="/clientes" method="post">
-        <input type="text" name="nome" placeholder="Nome">
-        <input type="text" name="contato" placeholder="Contato">
-        <input type="date" name="dataNascimento" placeholder="Data de Nascimento">
-        <button type="submit">Adicionar</button>
+    <form action="/clientes" method="post" class="form-container">
+        <div>
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+        </div>
+        <div>
+            <label for="contato">Contacto:</label>
+            <input type="tel" id="contato" name="contato"
+                   placeholder="Ex: 912345678"
+                   pattern="[0-9]{9,}"
+                   title="O contacto deve ter pelo menos 9 dígitos numéricos" required>
+        </div>
+        <div>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+        </div>
+        <div>
+            <label for="dataNascimento">Data de Nascimento:</label>
+            <input type="date" id="dataNascimento" name="dataNascimento" required>
+        </div>
+        <button type="submit">Adicionar Cliente</button>
     </form>
     <script th:src="@{/js/script.js}"></script>
 </body>
