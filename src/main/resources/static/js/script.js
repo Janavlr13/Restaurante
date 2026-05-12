@@ -105,6 +105,16 @@ function toggleTabelaReservas(){
     }
 }
 
+function toggleTabelaUtilizador(){
+    let tabela = document.getElementById("tabelaUtilizadores");
+    if(tabela.style.display === "none"){
+        tabela.style.display = "table";
+        tabela.style.width = "100%";
+    } else {
+        tabela.style.display = "none";
+    }
+}
+
 function mostrarNovoCliente() {
     var inserirNovoCliente = document.getElementById("novoCliente");
     if(inserirNovoCliente.style.display === "none"){
@@ -152,6 +162,15 @@ function mostrarNovaMesa() {
 
 function mostrarNovaNotificacao() {
     var inserirNovoCliente = document.getElementById("novaNotificacao");
+    if(inserirNovoCliente.style.display === "none"){
+        inserirNovoCliente.style.display = "flex";
+    } else {
+        inserirNovoCliente.style.display = "none";
+    }
+}
+
+function mostrarNovoUtilizador() {
+    var inserirNovoCliente = document.getElementById("novoUtilizador");
     if(inserirNovoCliente.style.display === "none"){
         inserirNovoCliente.style.display = "flex";
     } else {

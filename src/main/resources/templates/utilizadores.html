@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Gerentes</title>
+    <title>Utilizadores</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
@@ -11,7 +11,7 @@
 <body>
 
     <header class="main-header">
-        <h2>Gestão de Gerentes</h2>
+        <h2>Gestão de Utilizadores</h2>
     </header>
 
     <nav class="main-nav">
@@ -62,64 +62,55 @@
         </a>
     </nav>
 
-    <div id="tabelaGerentes">
-    <h3 th:text = "${mensagem}">Lista de Gerentes</h3>
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Contato</th>
-            <th>Email</th>
-            <th>Data de Nascimento</th>
-            <th>Endereço</th>
-        </tr>
+    <div id="tabelaUtilizadores">
+        <h3 th:text = "${mensagem}">Perfil do Utilizador</h3>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Perfil</th>
+            </tr>
 
-        <tr th:each="g : ${lista}">
-            <td class="coluna-nome" th:text="${g.nome}"></td>
-            <td class="coluna-contato" th:text="${g.contato}"></td>
-            <td class="coluna-email" th:text="${g.email}"></td>
-            <td class="coluna-dataNascimento"  th:text="${g.dataNascimento != null ? #temporals.format(g.dataNascimento, 'dd/MM/yyyy') : ''}"></td>
-            <td class="coluna-endereco" th:text="${g.endereco}"></td>
-        </tr>
-    </table>
-</div>
-
-    <div class="accoes">
-        <button class="botao" onclick="marcarGerente()">Destacar Gerentes</button>
-        <button class="botao" onclick="toggleTabelaGerentes()">Mostrar/Esconder Tabela</button>
-        <button class="botao" onclick="mostrarNovoGerente()">Inserir Novo Gerente</button>
+            <tr th:each="u : ${lista}">
+                <td class="coluna-nome" th:text="${u.nome}"></td>
+                <td class="coluna-email" th:text="${u.email}"></td>
+                <td class="coluna-perfil"  th:text="${u.perfil}"></td>
+            </tr>
+        </table>
     </div>
 
-    <div id="novoGerente" style="display: none">
+    <div class="accoes">
+        <button class="botao" onclick="toggleTabelaUtilizador()">Mostrar/Esconder Tabela</button>
+        <button class="botao" onclick="mostrarNovoUtilizador()">Inserir Novo Utilizador</button>
+    </div>
 
-        <form action="/gerentes" method="post" class="form-container">
-            <h3>Novo Gerente</h3>
+    <div id="novoUtilizador" style="display: none">
+
+        <form action="/utilizadores" method="post" class="form-container">
+            <h3>Novo Utilizador</h3>
 
             <div>
                 <label for="nome">Nome Completo:</label>
                 <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
             </div>
             <div>
-                <label for="contato">Contacto:</label>
-                <input type="tel" id="contato" name="contato"
-                       placeholder="Ex: 912345678"
-                       pattern="[0-9]{9,}"
-                       title="O contacto deve ter pelo menos 9 dígitos numéricos" required>
-            </div>
-            <div>
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
             </div>
             <div>
-                <label for="dataNascimento">Data de Nascimento:</label>
-                <input type="date" id="dataNascimento" name="dataNascimento" required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
             </div>
             <div>
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Cidade">
+                <label for="perfil">Perfil:</label>
+                <select id="perfil" name="perfil" required>
+                    <option value="" disabled selected>Selecione o Perfil...</option>
+                    <option value="ADMIN">Administrador</option>
+                    <option value="GERENTE">Gerente</option>
+                    <option value="FUNCIONARIO">Funcionário</option>
+                </select>
             </div>
-
-            <button type="submit">Adicionar Gerente</button>
-
+            <button type="submit">Adicionar Utilizador</button>
         </form>
     </div>
     <script th:src="@{/js/script.js}"></script>
