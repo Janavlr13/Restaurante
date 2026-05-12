@@ -13,7 +13,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Cliente {
 
     @Id

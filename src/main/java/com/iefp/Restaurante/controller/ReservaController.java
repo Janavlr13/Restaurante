@@ -29,7 +29,7 @@ public class ReservaController {
 
     @GetMapping("/reservas")
     public String listarReservas(Model model) {
-        model.addAttribute("mensagem", "Reservas realizadas");
+        model.addAttribute("mensagem", "Lista de Reservas");
         model.addAttribute("lista", reservaService.listarReservas());
         model.addAttribute("clientes", clienteService.listarClientes());
         model.addAttribute("funcionarios", funcionarioService.listarFuncionarios());

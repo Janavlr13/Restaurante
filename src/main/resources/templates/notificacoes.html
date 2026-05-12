@@ -6,72 +6,126 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-<nav class="main-nav">
-    <a href="/">Home</a>
-    <a href="/reservas">Reservas</a>
-    <a href="/clientes">Clientes</a>
-    <a href="/mesas">Mesas</a>
-    <a href="/funcionarios">Funcionários</a>
-    <a href="/gerentes">Gerentes</a>
-    <a href="/notificacoes">Notificações</a>
-</nav>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <body>
-<h1>Histórico de Notificações</h1>
 
-<div id="tabelaNotificacoes">
-    <h3 th:text="${mensagem_topo}"></h3>
-    <table>
-        <thead>
-        <tr>
-            <th>Data e Hora</th>
-            <th>Tipo</th>
-            <th>Mensagem</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="n : ${lista}">
-            <td class="coluna-dataHora" th:text="${#temporals.format(n.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
-            <td class="coluna-tipo" th:text="${n.tipo}"></td>
-            <td class="coluna-mensagem" th:text="${n.mensagem}"></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    <header class="main-header">
+        <h2>Gestão de Notificações</h2>
+    </header>
 
-<div class="botoes-controlo">
-    <button class="botao" onclick="marcarNotificacao()">Destacar Notificações</button>
-    <button class="botao" onclick="toggleTabela()">Mostrar/Esconder Histórico</button>
-</div>
+    <nav class="main-nav">
+        <a href="/" class='card'>
+            <div class='card-content'>
+                <span class="material-symbols-outlined">home</span>
+            </div>
+        </a>
+        <a href="/reservas" class='card'>
+            <div class='card-content'>
+                <h4>Reservas</h4>
+            </div>
+        </a>
+        <a href="/clientes" class='card'>
+            <div class='card-content'>
+                <h4>Clientes</h4>
+            </div>
+        </a>
+        <a href="/mesas" class='card'>
+            <div class='card-content'>
+                <h4>Mesas</h4>
+            </div>
+        </a>
+        <a href="/funcionarios" class='card'>
+            <div class='card-content'>
+                <h4>Funcionários</h4>
+            </div>
+        </a>
+        <a href="/gerentes" class='card'>
+            <div class='card-content'>
+                <h4>Gerentes</h4>
+            </div>
+        </a>
+        <a href="/notificacoes" class='card'>
+            <div class='card-content'>
+                <h4>Notificações</h4>
+            </div>
+        </a>
+    </nav>
 
-<hr>
-
-<h2>Nova Notificação</h2>
-<form action="/notificacoes" method="post" class="form-container">
-    <div>
-        <label for="dataHora">Data e Hora de Envio:</label>
-        <input type="datetime-local" id="dataHora" name="dataHora" required>
+    <div id="tabelaNotificacoes">
+    <h3 th:text="${mensagem}">Histórico de Notificações</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Data e Hora</th>
+                <th>Tipo</th>
+                <th>Mensagem</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="n : ${lista}">
+                <td class="coluna-dataHora" th:text="${#temporals.format(n.dataHora, 'dd/MM/yyyy HH:mm')}"></td>
+                <td class="coluna-tipo" th:text="${n.tipo}"></td>
+                <td class="coluna-mensagem">
+                    <span th:if="${n.reserva != null}"
+                          th:text="|${#temporals.format(n.reserva.data, 'dd/MM/yyyy')} | ${n.reserva.hora} | ${n.reserva.cliente.nome}|">
+                    </span>
+                    <span th:unless="${n.reserva != null}" th:text="${n.mensagem}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div>
-        <label for="tipo">Tipo de Notificação:</label>
-        <select name="tipo" id="tipo" required>
-            <option value="" disabled selected>Tipo:</option>
-            <option value="E-mail">E-mail</option>
-            <option value="SMS">SMS</option>
-            <option value="WhatsApp">WhatsApp</option>
-            <option value="Push">App Push</option>
-        </select>
+    <div class="accoes">
+        <button class="botao" onclick="marcarNotificacao()">Destacar Notificações</button>
+        <button class="botao" onclick="toggleTabelaNotificacoes()">Mostrar/Esconder Tabela</button>
+        <button class="botao" onclick="mostrarNovaNotificacao()">Inserir Nova Notificação</button>
     </div>
 
-    <div>
-        <label for="mensagem">Conteúdo da Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva aqui o texto da notificação..." required></textarea>
+    <div id="novaNotificacao" style="display: none">
+
+        <form action="/notificacoes" method="post" class="form-container">
+            <h3>Nova Notificação</h3>
+
+            <div>
+                <label for="dataHora">Data e Hora de Envio:</label>
+                <input type="datetime-local" id="dataHora" name="dataHora" required>
+            </div>
+
+            <div>
+                <label for="tipo">Tipo de Notificação:</label>
+                <select name="tipo" id="tipo" required>
+                    <option value="" disabled selected>Tipo:</option>
+                    <option value="E-mail">E-mail</option>
+                    <option value="SMS">SMS</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Push">App Push</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="reservaSelect">Selecionar Reserva:</label>
+                <select name="idReserva" id="reservaSelect" required onchange="gerarTextoNotificacao()">
+                    <option value="" disabled selected>Selecione a reserva:</option>
+                    <option th:each="reserva : ${listaReservas}"
+                            th:value="${reserva.idReserva}"
+                            th:data-cliente="${reserva.cliente.nome}"
+                            th:data-data="${#temporals.format(reserva.data, 'dd/MM/yyyy')}"
+                            th:data-hora="${reserva.hora}"
+                            th:text="|Reserva #${reserva.idReserva} - ${reserva.cliente.nome} (${#temporals.format(reserva.data, 'dd/MM/yyyy')})|">
+                    </option>
+                </select>
+            </div>
+
+            <div>
+                <label for="mensagem">Conteúdo da Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="O texto será gerado aqui..." required></textarea>
+            </div>
+
+            <button type="submit" class="botao-sucesso">Enviar Notificação</button>
+        </form>
     </div>
-
-    <button type="submit" class="botao-sucesso">Enviar Notificação</button>
-</form>
-
-<script th:src="@{/js/script.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

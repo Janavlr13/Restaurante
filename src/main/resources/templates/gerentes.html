@@ -5,11 +5,55 @@
     <title>Gerentes</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-<h1>Gerentes</h1>
 
-<div id="tabelaGerentes">
-    <h3 th:text = "${mensagem}"></h3>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<body>
+
+    <header class="main-header">
+        <h2>Gestão de Gerentes</h2>
+    </header>
+
+    <nav class="main-nav">
+        <a href="/" class='card'>
+            <div class='card-content'>
+                <span class="material-symbols-outlined">home</span>
+            </div>
+        </a>
+        <a href="/reservas" class='card'>
+            <div class='card-content'>
+                <h4>Reservas</h4>
+            </div>
+        </a>
+        <a href="/clientes" class='card'>
+            <div class='card-content'>
+                <h4>Clientes</h4>
+            </div>
+        </a>
+        <a href="/mesas" class='card'>
+            <div class='card-content'>
+                <h4>Mesas</h4>
+            </div>
+        </a>
+        <a href="/funcionarios" class='card'>
+            <div class='card-content'>
+                <h4>Funcionários</h4>
+            </div>
+        </a>
+        <a href="/gerentes" class='card'>
+            <div class='card-content'>
+                <h4>Gerentes</h4>
+            </div>
+        </a>
+        <a href="/notificacoes" class='card'>
+            <div class='card-content'>
+                <h4>Notificações</h4>
+            </div>
+        </a>
+    </nav>
+
+    <div id="tabelaGerentes">
+    <h3 th:text = "${mensagem}">Lista de Gerentes</h3>
     <table>
         <tr>
             <th>Nome</th>
@@ -23,45 +67,51 @@
             <td class="coluna-nome" th:text="${g.nome}"></td>
             <td class="coluna-contato" th:text="${g.contato}"></td>
             <td class="coluna-email" th:text="${g.email}"></td>
-            <td class="coluna-dataNascimento"  th:text="${#temporals.format(g.dataNascimento, 'dd/MM/yyyy')}"></td>
+            <td class="coluna-dataNascimento"  th:text="${g.dataNascimento != null ? #temporals.format(g.dataNascimento, 'dd/MM/yyyy') : ''}"></td>
             <td class="coluna-endereco" th:text="${g.endereco}"></td>
         </tr>
     </table>
 </div>
 
-<button class="botao" onclick="marcarGerente()">Destacar Gerentes</button>
-<button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
-
-<h2>Novo Gerente</h2>
-<form action="/gerentes" method="post" class="form-container">
-    <div>
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
-    </div>
-    <div>
-        <label for="contato">Contacto:</label>
-        <input type="tel" id="contato" name="contato"
-               placeholder="Ex: 912345678"
-               pattern="[0-9]{9,}"
-               title="O contacto deve ter pelo menos 9 dígitos numéricos" required>
-    </div>
-    <div>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
-    </div>
-    <div>
-        <label for="dataNascimento">Data de Nascimento:</label>
-        <input type="date" id="dataNascimento" name="dataNascimento" required>
-    </div>
-    <div>
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Cidade" required>
+    <div class="accoes">
+        <button class="botao" onclick="marcarGerente()">Destacar Gerentes</button>
+        <button class="botao" onclick="toggleTabelaGerentes()">Mostrar/Esconder Tabela</button>
+        <button class="botao" onclick="mostrarNovoGerente()">Inserir Novo Gerente</button>
     </div>
 
+    <div id="novoGerente" style="display: none">
 
-    <button type="submit">Adicionar Gerente</button>
+        <form action="/gerentes" method="post" class="form-container">
+            <h3>Novo Gerente</h3>
 
-</form>
-<script th:src="@{/js/script.js}"></script>
+            <div>
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+            </div>
+            <div>
+                <label for="contato">Contacto:</label>
+                <input type="tel" id="contato" name="contato"
+                       placeholder="Ex: 912345678"
+                       pattern="[0-9]{9,}"
+                       title="O contacto deve ter pelo menos 9 dígitos numéricos" required>
+            </div>
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+            </div>
+            <div>
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required>
+            </div>
+            <div>
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Cidade">
+            </div>
+
+            <button type="submit">Adicionar Gerente</button>
+
+        </form>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
 </body>
 </html>

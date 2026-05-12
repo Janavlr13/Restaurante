@@ -2,6 +2,7 @@ package com.iefp.Restaurante.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,8 +18,9 @@ public class Funcionario {
 
     private Long idFuncionario;
     private String nome;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
-    private String telefone;
+    private String contato;
     private String endereco;
     private String email;
     private String cargo;

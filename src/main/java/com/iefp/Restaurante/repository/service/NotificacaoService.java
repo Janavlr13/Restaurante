@@ -26,16 +26,15 @@ public class NotificacaoService {
                                    LocalDateTime dataHora,
                                    Long id_reserva){
 
-        Optional<Reserva> reserva = reservaRepository.findById(id_reserva);
+        Reserva reserva = reservaRepository.findById(id_reserva).orElse(null);
 
         Notificacao notificacao = new Notificacao();
         notificacao.setTipo(tipo);
         notificacao.setMensagem(mensagem);
         notificacao.setDataHora(dataHora);
-        notificacao.setReserva(reserva.get());
+        notificacao.setReserva(reserva);
 
         notificacaoRepository.save(notificacao);
-
     }
 
     public List<Notificacao> listarNotificacoes(){

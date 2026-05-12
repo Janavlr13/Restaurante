@@ -88,6 +88,15 @@ tr:first-child th:last-child { border-top-right-radius: 10px; }
 tr:last-child td:first-child { border-bottom-left-radius: 10px; }
 tr:last-child td:last-child { border-bottom-right-radius: 10px; }
 
+
+.coluna-nome {
+    width: 40%;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 th {
     background-color: #d9eaf7;
     color: #0b5394;
@@ -104,7 +113,7 @@ th, td {
 tr:nth-child(even) { background-color: #fafafa; }
 tr:hover { background-color: #f1f7fd; }
 
-/* Classes específicas das colunas que já tinhas */
+/* Classes específicas das colunas */
 .coluna-nome, .coluna-contato, .coluna-dataNascimento {
     font-weight: bold;
     color: #123f5c;
@@ -118,22 +127,36 @@ tr:hover { background-color: #f1f7fd; }
 /* ==========================================================================
    3. FORMULÁRIOS (CRIAÇÃO)
    ========================================================================== */
+
+#novaNotificacao,
+#novaReserva,
+#novaMesa,
+#novoGerente,
+#novoFuncionario,
+#novoCliente {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    width: 100%;
+}
+
 .form-container {
-    max-width: 500px;
+    width: 95%;
+    max-width: 800px;
     background: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .form-container div {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 }
 
 .form-container label {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
     color: #555;
 }
@@ -141,9 +164,9 @@ tr:hover { background-color: #f1f7fd; }
 .form-container input,
 .form-container select,
 .form-container textarea {
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 14px;
 }
 

@@ -5,76 +5,124 @@
     <title>Funcionários</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 <body>
-<h1>Funcionários</h1>
 
-<div id="tabelaFuncionarios">
-    <h3 th:text = "${mensagem}"></h3>
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Contato</th>
-            <th>Email</th>
-            <th>Data de Nascimento</th>
-            <th>Endereço</th>
-            <th>Cargo</th>
-        </tr>
+    <header class="main-header">
+        <h2>Gestão de Funcionários</h2>
+    </header>
 
-        <tr th:each="f : ${lista}">
-            <td class="coluna-nome" th:text="${f.nome}"></td>
-            <td class="coluna-contato" th:text="${f.contato}"></td>
-            <td class="coluna-email" th:text="${f.email}"></td>
-            <td class="coluna-dataNascimento"  th:text="${#temporals.format(f.dataNascimento, 'dd/MM/yyyy')}"></td>
-            <td class="coluna-endereco" th:text="${f.endereco}"></td>
-            <td class="coluna-cargo" th:text="${f.cargo}"></td>
-        </tr>
-    </table>
-</div>
+    <nav class="main-nav">
+        <a href="/" class='card'>
+            <div class='card-content'>
+                <span class="material-symbols-outlined">home</span>
+            </div>
+        </a>
+        <a href="/reservas" class='card'>
+            <div class='card-content'>
+                <h4>Reservas</h4>
+            </div>
+        </a>
+        <a href="/clientes" class='card'>
+            <div class='card-content'>
+                <h4>Clientes</h4>
+            </div>
+        </a>
+        <a href="/mesas" class='card'>
+            <div class='card-content'>
+                <h4>Mesas</h4>
+            </div>
+        </a>
+        <a href="/funcionarios" class='card'>
+            <div class='card-content'>
+                <h4>Funcionários</h4>
+            </div>
+        </a>
+        <a href="/gerentes" class='card'>
+            <div class='card-content'>
+                <h4>Gerentes</h4>
+            </div>
+        </a>
+        <a href="/notificacoes" class='card'>
+            <div class='card-content'>
+                <h4>Notificações</h4>
+            </div>
+        </a>
+    </nav>
 
-<button class="botao" onclick="marcarFuncionario()">Destacar Funcionários</button>
-<button class="botao" onclick="toggleTabela()">Mostrar/Esconder Tabela</button>
+    <div id="tabelaFuncionarios">
+        <h3 th:text = "${mensagem}">Lista de Funcionários</h3>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Contato</th>
+                <th>Email</th>
+                <th>Data de Nascimento</th>
+                <th>Endereço</th>
+                <th>Cargo</th>
+            </tr>
 
-<h2>Novo Funcionário</h2>
-<form action="/funcionarios" method="post" class="form-container">
-    <div>
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+            <tr th:each="f : ${lista}">
+                <td class="coluna-nome" th:text="${f.nome}"></td>
+                <td class="coluna-contato" th:text="${f.contato}"></td>
+                <td class="coluna-email" th:text="${f.email}"></td>
+                <td class="coluna-dataNascimento"  th:text="${f.dataNascimento != null ? #temporals.format(f.dataNascimento, 'dd/MM/yyyy') : ''}"></td>
+                <td class="coluna-endereco" th:text="${f.endereco}"></td>
+                <td class="coluna-cargo" th:text="${f.cargo}"></td>
+            </tr>
+        </table>
     </div>
-    <div>
-        <label for="contato">Contacto:</label>
-        <input type="tel" id="contato" name="contato"
-               placeholder="Ex: 912345678"
-               pattern="[0-9]{9,}"
-               title="O contacto deve ter pelo menos 9 dígitos numéricos" required>
-    </div>
-    <div>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
-    </div>
-    <div>
-        <label for="dataNascimento">Data de Nascimento:</label>
-        <input type="date" id="dataNascimento" name="dataNascimento" required>
-    </div>
-    <div>
-        <label for="endereco">Endereço:</label>
-        <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Cidade" required>
-    </div>
-    <div>
-        <label for="cargo">Cargo:</label>
-        <select id="cargo" name="cargo" required>
-            <option value="" disabled selected>Selecione o cargo...</option>
-            <option value="Cozinheiro">Cozinheiro</option>
-            <option value="Empregado de Mesa">Empregado de Mesa</option>
-            <option value="Rececionista">Recepcionista</option>
-            <option value="Limpeza">Limpeza</option>
-            <option value="Barman">Barman</option>
-        </select>
+
+    <div class="accoes">
+        <button class="botao" onclick="marcarFuncionario()">Destacar Funcionários</button>
+        <button class="botao" onclick="toggleTabelaFuncionarios()">Mostrar/Esconder Tabela</button>
+        <button class="botao" onclick="mostrarNovoFuncionario()">Inserir Novo Funcionário</button>
     </div>
 
+    <div id="novoFuncionario" style="display: none">
 
-    <button type="submit">Adicionar Funcionário</button>
+        <form action="/funcionarios" method="post" class="form-container">
+            <h3>Novo Funcionário</h3>
 
-</form>
-<script th:src="@{/js/script.js}"></script>
+            <div>
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+            </div>
+            <div>
+                <label for="contato">Contacto:</label>
+                <input type="tel" id="contato" name="contato"
+                       placeholder="Ex: 912345678"
+                       pattern="[0-9]{9,}"
+                       title="O contacto deve ter pelo menos 9 dígitos numéricos" required>
+            </div>
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+            </div>
+            <div>
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required>
+            </div>
+            <div>
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Cidade">
+            </div>
+            <div>
+                <label for="cargo">Cargo:</label>
+                <select id="cargo" name="cargo" required>
+                    <option value="" disabled selected>Selecione o cargo...</option>
+                    <option value="Cozinheiro">Cozinheiro</option>
+                    <option value="Empregado de Mesa">Empregado de Mesa</option>
+                    <option value="Rececionista">Recepcionista</option>
+                    <option value="Limpeza">Limpeza</option>
+                    <option value="Barman">Barman</option>
+                </select>
+            </div>
+            <button type="submit">Adicionar Funcionário</button>
+        </form>
+    </div>
+    <script th:src="@{/js/script.js}"></script>
 </body>
 </html>
