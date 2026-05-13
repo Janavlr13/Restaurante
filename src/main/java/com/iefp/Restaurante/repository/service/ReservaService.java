@@ -31,15 +31,15 @@ public class ReservaService {
                                LocalTime hora,
                                Integer numPessoas,
                                String estado,
-                               Long id_cliente,
-                               Long id_funcionario,
-                               Long ig_gerente,
-                               Long id_mesa) {
+                               Long idCliente,
+                               Long idFuncionario,
+                               Long idGerente,
+                               Long idMesa) {
 
-        Optional<Cliente> cliente = clienteRepository.findById(id_cliente);
-        Optional<Gerente> gerente = gerenteRepository.findById(id_funcionario);
-        Optional<Funcionario> funcionario = funcionarioRepository.findById(ig_gerente);
-        Optional<Mesa> mesa = mesaRepository.findById(id_mesa);
+        Optional<Cliente> cliente = clienteRepository.findById(idCliente);
+        Optional<Gerente> gerente = gerenteRepository.findById(idGerente);
+        Optional<Funcionario> funcionario = funcionarioRepository.findById(idFuncionario);
+        Optional<Mesa> mesa = mesaRepository.findById(idMesa);
 
         Reserva reserva = new Reserva();
         reserva.setData(data);

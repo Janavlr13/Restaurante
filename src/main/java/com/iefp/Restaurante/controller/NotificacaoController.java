@@ -24,7 +24,7 @@ public class NotificacaoController {
     public String listarNotificacoes(Model model){
         model.addAttribute("mensagem", "Lista de Notificações");
         model.addAttribute("lista", notificacaoService.listarNotificacoes());
-        model.addAttribute("reservas", reservaService.listarReservas());
+        model.addAttribute("listaReservas", reservaService.listarReservas());
         return "notificacoes";
     }
 
@@ -32,8 +32,8 @@ public class NotificacaoController {
     public String guardarNotificacao(String tipo,
                                        String mensagem,
                                        LocalDateTime dataHora,
-                                       Long id_reserva){
-        notificacaoService.guardarNotificacao(tipo, mensagem, dataHora, id_reserva);
+                                       Long idReserva){
+        notificacaoService.guardarNotificacao(tipo, mensagem, dataHora, idReserva);
         return "redirect:/notificacoes";
     }
 }

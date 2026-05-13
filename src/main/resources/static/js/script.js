@@ -32,7 +32,7 @@ function marcarMesa() {
 }
 
 function marcarReserva() {
-    const nomes = document.querySelectorAll('.coluna-nome');
+    const nomes = document.querySelectorAll('.coluna-data');
     for(let i = 0; i < nomes.length; i++){
         nomes[i].classList.toggle('destacado');
     }

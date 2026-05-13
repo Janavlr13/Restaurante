@@ -78,7 +78,7 @@
                 <td class="coluna-tipo" th:text="${n.tipo}"></td>
                 <td class="coluna-mensagem">
                     <span th:if="${n.reserva != null}"
-                          th:text="|${#temporals.format(n.reserva.data, 'dd/MM/yyyy')} | ${n.reserva.hora} | ${n.reserva.cliente.nome}|">
+                          th:text="${#temporals.format(n.reserva.data, 'dd/MM/yyyy')} + ' - ' + ${n.reserva.hora} + ' - ' + ${n.reserva.cliente.nome}">
                     </span>
                     <span th:unless="${n.reserva != null}" th:text="${n.mensagem}"></span>
                 </td>
@@ -123,7 +123,7 @@
                             th:data-cliente="${reserva.cliente.nome}"
                             th:data-data="${#temporals.format(reserva.data, 'dd/MM/yyyy')}"
                             th:data-hora="${reserva.hora}"
-                            th:text="|Reserva #${reserva.idReserva} - ${reserva.cliente.nome} (${#temporals.format(reserva.data, 'dd/MM/yyyy')})|">
+                            th:text="'Reserva #' + ${reserva.idReserva} + ' - ' + ${reserva.cliente.nome} + ' (' + ${#temporals.format(reserva.data, 'dd/MM/yyyy')} + ')'">
                     </option>
                 </select>
             </div>

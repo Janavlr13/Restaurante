@@ -43,11 +43,11 @@ public class ReservaController {
                                  LocalTime hora,
                                  Integer numPessoas,
                                  String estado,
-                                 Long id_cliente,
-                                 Long id_funcionario,
-                                 Long ig_gerente,
-                                 Long id_mesa) {
-        reservaService.guardarReserva(data, hora, numPessoas, estado, id_cliente, id_funcionario, ig_gerente, id_mesa);
+                                 Long cliente,
+                                 Long funcionario,
+                                 Long gerente,
+                                 Long mesa) {
+        reservaService.guardarReserva(data, hora, numPessoas, estado, cliente, funcionario, gerente, mesa);
         return "redirect:/reservas";
     }
 
