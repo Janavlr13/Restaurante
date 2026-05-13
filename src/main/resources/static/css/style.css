@@ -114,11 +114,6 @@ th, td {
 tr:nth-child(even) { background-color: #fafafa; }
 tr:hover { background-color: #f1f7fd; }
 
-/* Classes específicas das colunas */
-.coluna-nome, .coluna-contato, .coluna-dataNascimento {
-    font-weight: bold;
-    color: #123f5c;
-}
 
 /* Cores para Estados (Dinâmico) */
 .em_progresso { color: #f39c12; font-weight: bold; }

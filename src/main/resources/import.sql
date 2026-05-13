@@ -47,3 +47,9 @@ INSERT INTO reserva (data, hora, num_pessoas, estado, id_cliente, id_funcionario
 ('2026-05-21', '13:00:00', 6, 'Confirmada', 3, 1, 2, 1),
 ('2026-05-22', '19:30:00', 3, 'Cancelada', 1, 3, 3, 2),
 ('2026-05-23', '21:00:00', 5, 'Confirmada', 2, 2, 2, 1);
+
+-- NOTIFICACOES
+INSERT INTO notificacao (data_hora, mensagem, tipo, id_reserva) VALUES
+                                                                    ('2026-05-13 14:34:00', 'Olá João Modesto, confirmamos a sua reserva #1 para o dia 20/05/2026 às 12:30. Esperamos por si!', 'E-mail', 1),
+                                                                    ('2026-05-13 15:00:00', 'Olá Maria Silva, lembramos a sua reserva #2 para o dia 20/05/2026 às 20:00. Até breve!', 'SMS', 2),
+                                                                    ('2026-05-13 16:30:00', 'Olá Carlos Pereira, confirmamos a sua reserva #3 para o dia 21/05/2026 às 13:00. Esperamos por si!', 'WhatsApp', 3);
