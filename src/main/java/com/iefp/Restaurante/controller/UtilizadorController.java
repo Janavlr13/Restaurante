@@ -29,9 +29,8 @@ public class UtilizadorController {
                              HttpSession session,
                              Model model){
         Utilizador utilizador = utilizadorService.autenticar(email, senha);
-
         if (utilizador != null){
-            session.setAttribute("Utilizador Ligado", utilizador);
+            session.setAttribute("UtilizadorLigado", utilizador);
             return "redirect:/";
         }
         model.addAttribute("erro", "Email ou senha inválidos.");
@@ -45,7 +44,10 @@ public class UtilizadorController {
     }
 
     @GetMapping("/utilizadores")
-    public String listarUtilizadores(Model model){
+    public String listarUtilizadores(Model model, HttpSession session){
+        Utilizador utilizadorLogado = (Utilizador) session.getAttribute("UtilizadorLigado");
+        model.addAttribute("utilizador", utilizadorLogado);
+
         model.addAttribute("mensagem", "Lista de Utilizadores");
         model.addAttribute("lista", utilizadorService.listarUtilizadores());
         return "utilizadores";
@@ -60,7 +62,4 @@ public class UtilizadorController {
         utilizadorService.guardarUtilizador(utilizador);
         return "redirect:/utilizadores";
     }
-
-
-
 }

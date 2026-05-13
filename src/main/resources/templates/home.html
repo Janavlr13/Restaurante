@@ -12,53 +12,53 @@
     <h1>  🍽 Restaurante - Menu de Gestão 🍽  </h1>
 </header>
 
-    <nav class="main-nav">
-        <a href="/" class='card'>
-            <div class='card-content'>
-                <span class="material-symbols-outlined">home</span>
-            </div>
-        </a>
-        <a href="/reservas" class='card'>
-            <div class='card-content'>
-                <h4>Reservas</h4>
-            </div>
-        </a>
-        <a href="/clientes" class='card'>
-            <div class='card-content'>
-                <h4>Clientes</h4>
-            </div>
-        </a>
-        <a href="/mesas" class='card'>
-            <div class='card-content'>
-                <h4>Mesas</h4>
-            </div>
-        </a>
-        <a href="/funcionarios" class='card'>
-            <div class='card-content'>
-                <h4>Funcionários</h4>
-            </div>
-        </a>
-        <a href="/gerentes" class='card'>
-            <div class='card-content'>
-                <h4>Gerentes</h4>
-            </div>
-        </a>
-        <a href="/notificacoes" class='card'>
-            <div class='card-content'>
-                <h4>Notificações</h4>
-            </div>
-        </a>
-        <a href="/utilizadores" class='card'>
-            <div class='card-content'>
-                <h4>Utilizadores</h4>
-            </div>
-        </a>
-        <a href="/logout" class='card'>
-            <div class='card-content'>
-                <h4>Sair</h4>
-            </div>
-        </a>
-    </nav>
+<nav class="main-nav">
+    <a href="/" class='card'>
+        <div class='card-content'>
+            <span class="material-symbols-outlined">home</span>
+        </div>
+    </a>
+    <a href="/reservas" class='card'>
+        <div class='card-content'>
+            <h4>Reservas</h4>
+        </div>
+    </a>
+    <a href="/clientes" class='card'>
+        <div class='card-content'>
+            <h4>Clientes</h4>
+        </div>
+    </a>
+    <a href="/mesas" class='card' th:if="${utilizador.perfil == 'GERENTE' or utilizador.perfil == 'ADMIN'}">
+        <div class='card-content'>
+            <h4>Mesas</h4>
+        </div>
+    </a>
+    <a href="/funcionarios" class='card' th:if="${utilizador.perfil == 'GERENTE' or utilizador.perfil == 'ADMIN'}">
+        <div class='card-content'>
+            <h4>Funcionários</h4>
+        </div>
+    </a>
+    <a href="/gerentes" class='card' th:if="${utilizador.perfil == 'ADMIN'}">
+        <div class='card-content'>
+            <h4>Gerentes</h4>
+        </div>
+    </a>
+    <a href="/notificacoes" class='card'>
+        <div class='card-content'>
+            <h4>Notificações</h4>
+        </div>
+    </a>
+    <a href="/utilizadores" class='card' th:if="${utilizador.perfil == 'ADMIN'}">
+        <div class='card-content'>
+            <h4>Utilizadores</h4>
+        </div>
+    </a>
+    <a href="/logout" class='card'>
+        <div class='card-content'>
+            <h4 th:text="'Utilizador: ' + ${utilizador.nome} + ' (' + ${utilizador.perfil} + ')' + '  ⏻ '">PerfilLogout</h4>
+        </div>
+    </a>
+</nav>
 
 <main class="dashboard-container">
     <nav class="dashboard-grid">
@@ -77,21 +77,21 @@
             </div>
         </a>
 
-        <a href="/mesas" class="card">
+        <a href="/mesas" class="card" th:if="${utilizador.perfil == 'GERENTE' or utilizador.perfil == 'ADMIN'}">
             <div class="card-content">
                 <h3>🪑 Mesas</h3>
                 <p>Configurar disposição e capacidade das mesas.</p>
             </div>
         </a>
 
-        <a href="/funcionarios" class="card">
+        <a href="/funcionarios" class="card" th:if="${utilizador.perfil == 'GERENTE' or utilizador.perfil == 'ADMIN'}">
             <div class="card-content">
                 <h3>🧑‍🍳 Funcionários</h3>
                 <p>Gestão da equipa e cargos.</p>
             </div>
         </a>
 
-        <a href="/gerentes" class="card">
+        <a href="/gerentes" class="card" th:if="${utilizador.perfil == 'ADMIN'}">
             <div class="card-content">
                 <h3>💶 Gerentes</h3>
                 <p>Administração e responsáveis de turno.</p>

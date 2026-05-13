@@ -1,7 +1,9 @@
 package com.iefp.Restaurante.controller;
 
 import com.iefp.Restaurante.model.Gerente;
+import com.iefp.Restaurante.model.Utilizador;
 import com.iefp.Restaurante.repository.service.GerenteService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +23,17 @@ public class GerenteController {
     }
 
     @GetMapping("/gerentes")
-    public String listarGerentes(Model model) {
+    public String listarGerentes(Model model, HttpSession session) {
+
+        Utilizador utilizador = (Utilizador) session.getAttribute("UtilizadorLigado");
+        if (utilizador == null){
+            return "redirect:/login";
+        }
+        if(!utilizador.getPerfil().equals("ADMIN")) {
+            return "redirect:/login";
+        }
+        model.addAttribute("utilizador", utilizador);
+
         model.addAttribute("mensagem", "Lista de Gerentes");
         model.addAttribute("lista", gerenteService.listarGerentes());
         return "gerentes";

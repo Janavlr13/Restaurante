@@ -1,7 +1,9 @@
 package com.iefp.Restaurante.controller;
 
 import com.iefp.Restaurante.model.Cliente;
+import com.iefp.Restaurante.model.Utilizador;
 import com.iefp.Restaurante.repository.service.ClienteService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,19 @@ public class ClienteController {
 
     // Metodo
     @GetMapping("/clientes")
-    public String listarClientes(Model model) {
+    public String listarClientes(Model model, HttpSession session) {
+
+        Utilizador utilizador = (Utilizador) session.getAttribute("UtilizadorLigado");
+        if (utilizador == null){
+            return "redirect:/login";
+        }
+        if(!utilizador.getPerfil().equals("GERENTE") &&
+                !utilizador.getPerfil().equals("ADMIN") &&
+                !utilizador.getPerfil().equals("FUNCIONARIO")) {
+            return "redirect:/login";
+        }
+        model.addAttribute("utilizador", utilizador);
+
         model.addAttribute("mensagem", "Lista de Clientes");
         model.addAttribute("lista", clienteService.listarClientes());
         return "clientes";

@@ -1,7 +1,9 @@
 package com.iefp.Restaurante.controller;
 
 import com.iefp.Restaurante.model.Mesa;
+import com.iefp.Restaurante.model.Utilizador;
 import com.iefp.Restaurante.repository.service.MesaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,18 @@ public class MesaController {
     }
 
     @GetMapping("/mesas")
-    public String listarMesas(Model model) {
+    public String listarMesas(Model model, HttpSession session) {
+
+        Utilizador utilizador = (Utilizador) session.getAttribute("UtilizadorLigado");
+        if (utilizador == null){
+            return "redirect:/login";
+        }
+        if(!utilizador.getPerfil().equals("GERENTE") &&
+                !utilizador.getPerfil().equals("ADMIN")) {
+            return "redirect:/login";
+        }
+        model.addAttribute("utilizador", utilizador);
+
         model.addAttribute("mensagem", "Lista de Mesas");
         model.addAttribute("lista", mesaService.listarMesas());
         return "mesas"; // igual ao nome to ficheiro html

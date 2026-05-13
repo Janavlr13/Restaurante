@@ -2,7 +2,9 @@ package com.iefp.Restaurante.controller;
 
 
 import com.iefp.Restaurante.model.Funcionario;
+import com.iefp.Restaurante.model.Utilizador;
 import com.iefp.Restaurante.repository.service.FuncionarioService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,18 @@ public class FuncionarioController {
     }
 
     @GetMapping("/funcionarios")
-    public String funcionarios(Model model) {
+    public String funcionarios(Model model, HttpSession session) {
+
+        Utilizador utilizador = (Utilizador) session.getAttribute("UtilizadorLigado");
+        if (utilizador == null){
+            return "redirect:/login";
+        }
+        if(!utilizador.getPerfil().equals("GERENTE") &&
+                !utilizador.getPerfil().equals("ADMIN")) {
+            return "redirect:/login";
+        }
+        model.addAttribute("utilizador", utilizador);
+
         model.addAttribute("mensagem", "Lista de Funcionários");
         model.addAttribute("lista", funcionarioService.listarFuncionarios());
         return "funcionarios";

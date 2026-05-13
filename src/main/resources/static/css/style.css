@@ -57,7 +57,7 @@ hr {
 }
 
 /* ==========================================================================
-   2. TABELAS (LISTAGENS)
+   2. TABELAS
    ========================================================================== */
 table {
     width: 100% !important;
@@ -123,8 +123,8 @@ tr:hover { background-color: #f1f7fd; }
 /* ==========================================================================
    3. FORMULÁRIOS (CRIAÇÃO)
    ========================================================================== */
-#novoUtilizador,
 #login,
+#novoUtilizador,
 #novaNotificacao,
 #novaReserva,
 #novaMesa,
@@ -339,6 +339,9 @@ button[type="submit"]:hover { background-color: #219150; }
     color: red;
     font-weight: bold;
     margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 input[type="email"],

@@ -1,7 +1,9 @@
 package com.iefp.Restaurante.controller;
 
+import com.iefp.Restaurante.model.Utilizador;
 import com.iefp.Restaurante.repository.service.NotificacaoService;
 import com.iefp.Restaurante.repository.service.ReservaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,19 @@ public class NotificacaoController {
     }
 
     @GetMapping("/notificacoes")
-    public String listarNotificacoes(Model model){
+    public String listarNotificacoes(Model model,  HttpSession session){
+
+        Utilizador utilizador = (Utilizador) session.getAttribute("UtilizadorLigado");
+        if (utilizador == null){
+            return "redirect:/login";
+        }
+        if(!utilizador.getPerfil().equals("GERENTE") &&
+                !utilizador.getPerfil().equals("ADMIN") &&
+                        !utilizador.getPerfil().equals("FUNCIONARIO")) {
+            return "redirect:/login";
+        }
+        model.addAttribute("utilizador", utilizador);
+
         model.addAttribute("mensagem", "Lista de Notificações");
         model.addAttribute("lista", notificacaoService.listarNotificacoes());
         model.addAttribute("listaReservas", reservaService.listarReservas());

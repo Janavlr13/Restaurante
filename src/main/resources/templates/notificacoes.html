@@ -30,17 +30,17 @@
                 <h4>Clientes</h4>
             </div>
         </a>
-        <a href="/mesas" class='card'>
+        <a href="/mesas" class='card' th:if="${utilizador.perfil == 'GERENTE' or utilizador.perfil == 'ADMIN'}">
             <div class='card-content'>
                 <h4>Mesas</h4>
             </div>
         </a>
-        <a href="/funcionarios" class='card'>
+        <a href="/funcionarios" class='card' th:if="${utilizador.perfil == 'GERENTE' or utilizador.perfil == 'ADMIN'}">
             <div class='card-content'>
                 <h4>Funcionários</h4>
             </div>
         </a>
-        <a href="/gerentes" class='card'>
+        <a href="/gerentes" class='card' th:if="${utilizador.perfil == 'ADMIN'}">
             <div class='card-content'>
                 <h4>Gerentes</h4>
             </div>
@@ -50,14 +50,14 @@
                 <h4>Notificações</h4>
             </div>
         </a>
-        <a href="/utilizadores" class='card'>
+        <a href="/utilizadores" class='card' th:if="${utilizador.perfil == 'ADMIN'}">
             <div class='card-content'>
                 <h4>Utilizadores</h4>
             </div>
         </a>
         <a href="/logout" class='card'>
             <div class='card-content'>
-                <h4>Sair</h4>
+                <h4 th:text="'Utilizador: ' + ${utilizador.nome} + ' (' + ${utilizador.perfil} + ')' + '  ⏻ '">PerfilLogout</h4>
             </div>
         </a>
     </nav>

@@ -14,16 +14,17 @@
 
     <div id="login" style="display: flex">
 
-        <p th:if= "${erro}"
-           th:text="${erro}"
-           class="erro"></p>
-
         <form action="/login" method="post" class="form-container">
             <h3>Iniciar Sessão</h3>
 
             <div>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="senha" placeholder="Senha" required>
+
+                <p th:if= "${erro}"
+                   th:text="${erro}"
+                   class="erro"></p>
+
                 <button type="submit">Entrar</button>
             </div>
 
