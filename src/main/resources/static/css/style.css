@@ -67,6 +67,7 @@ table {
     border: none;
 }
 
+#tabelaDisponibilidade,
 #tabelaUtilizadores,
 #tabelaClientes,
 #tabelaFuncionarios,
@@ -123,6 +124,7 @@ tr:hover { background-color: #f1f7fd; }
 /* ==========================================================================
    3. FORMULÁRIOS (CRIAÇÃO)
    ========================================================================== */
+#novaDisponibilidade,
 #login,
 #novoUtilizador,
 #novaNotificacao,

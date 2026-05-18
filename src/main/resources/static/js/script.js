@@ -1,10 +1,4 @@
 function marcarCliente(){
-   /* let nomes = document.querySelectorAll(".coluna-nome")
-
-    nomes.forEach(function (td){
-        td.style.backgroundColor="#ffe599";
-    })*/
-
     const nomes = document.querySelectorAll('.coluna-nome');
     for(let i = 0; i < nomes.length; i++){
         nomes[i].classList.toggle('destacado');
@@ -40,6 +34,13 @@ function marcarReserva() {
 
 function marcarNotificacao() {
     const nomes = document.querySelectorAll('.coluna-dataHora');
+    for(let i = 0; i < nomes.length; i++){
+        nomes[i].classList.toggle('destacado');
+    }
+}
+
+function marcarDisponibilidade() {
+    const nomes = document.querySelectorAll('.coluna-diaDaSemana');
     for(let i = 0; i < nomes.length; i++){
         nomes[i].classList.toggle('destacado');
     }
@@ -115,6 +116,16 @@ function toggleTabelaUtilizador(){
     }
 }
 
+function toggleTabelaDisponibilidade(){
+    let tabela = document.getElementById("tabelaDisponibilidade");
+    if(tabela.style.display === "none"){
+        tabela.style.display = "table";
+        tabela.style.width = "100%";
+    } else {
+        tabela.style.display = "none";
+    }
+}
+
 function mostrarNovoCliente() {
     var inserirNovoCliente = document.getElementById("novoCliente");
     if(inserirNovoCliente.style.display === "none"){
@@ -171,6 +182,15 @@ function mostrarNovaNotificacao() {
 
 function mostrarNovoUtilizador() {
     var inserirNovoCliente = document.getElementById("novoUtilizador");
+    if(inserirNovoCliente.style.display === "none"){
+        inserirNovoCliente.style.display = "flex";
+    } else {
+        inserirNovoCliente.style.display = "none";
+    }
+}
+
+function mostrarNovaDisponibilidade() {
+    var inserirNovoCliente = document.getElementById("novaDisponibilidade");
     if(inserirNovoCliente.style.display === "none"){
         inserirNovoCliente.style.display = "flex";
     } else {

@@ -48,7 +48,7 @@ public class FuncionarioController {
                                      @RequestParam String endereco,
                                      @RequestParam String email,
                                      @RequestParam String cargo) {
-        Funcionario funcionario = new Funcionario(null, nome, dataNascimento, contato, endereco, email, cargo, null);
+        Funcionario funcionario = new Funcionario(null, nome, dataNascimento, contato, endereco, email, cargo, null, null);
         funcionarioService.guardarFuncionario(funcionario);
         return "redirect:/funcionarios";
     }

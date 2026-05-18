@@ -27,4 +27,7 @@ public class Funcionario {
 
     @OneToMany(mappedBy = "funcionario")
     private List<Reserva> reservas;
+
+    @OneToMany(mappedBy = "funcionario")
+    private List<Disponibilidade> disponibilidade;
 }

@@ -55,6 +55,11 @@
                 <h4>Utilizadores</h4>
             </div>
         </a>
+        <a href="/disponibilidade" class='card' th:if="${utilizador.perfil == 'GERENTE' or utilizador.perfil == 'ADMIN'}">
+            <div class='card-content'>
+                <h4>Agenda</h4>
+            </div>
+        </a>
         <a href="/logout" class='card'>
             <div class='card-content'>
                 <h4 th:text="'Utilizador: ' + ${utilizador.nome} + ' (' + ${utilizador.perfil} + ')' + '  ⏻ '">PerfilLogout</h4>

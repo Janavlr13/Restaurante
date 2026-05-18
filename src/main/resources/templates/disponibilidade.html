@@ -2,7 +2,7 @@
 <<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Utilizadores</title>
+    <title>Agenda</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
@@ -11,7 +11,7 @@
 <body>
 
     <header class="main-header">
-        <h2>Gestão de Utilizadores</h2>
+        <h2>Agenda de Funcionários</h2>
     </header>
 
     <nav class="main-nav">
@@ -67,57 +67,70 @@
         </a>
     </nav>
 
-    <div id="tabelaUtilizadores">
-        <h3 th:text = "${mensagem}">Perfil do Utilizador</h3>
+    <div id="tabelaDisponibilidade">
+        <h3 th:text = "${mensagem}">Disponibilidade</h3>
         <table>
             <tr>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Perfil</th>
+                <th>Dia da Semana</th>
+                <th>Hora Início</th>
+                <th>Hora Fim</th>
+                <th>Funcionário</th>
             </tr>
 
-            <tr th:each="u : ${lista}">
-                <td class="coluna-nome" th:text="${u.nome}"></td>
-                <td class="coluna-email" th:text="${u.email}"></td>
-                <td class="coluna-perfil"  th:text="${u.perfil}"></td>
+            <tr th:each="d : ${lista}">
+                <td class="coluna-diaDaSemana" th:text="${d.diaDaSemana}"></td>
+                <td class="coluna-horaInicio" th:text="${d.horaInicio}"></td>
+                <td class="coluna-horaFim"  th:text="${d.horaFim}"></td>
+                <td class="coluna-funcionario"  th:text="${d.funcionario.nome}"></td>
             </tr>
         </table>
     </div>
 
     <div class="accoes">
-        <button class="botao" onclick="toggleTabelaUtilizador()">Mostrar/Esconder Tabela</button>
-        <button class="botao" onclick="mostrarNovoUtilizador()">Inserir Novo Utilizador</button>
+        <button class="botao" onclick="marcarDisponibilidade()">Destacar Disponibilidade</button>
+        <button class="botao" onclick="toggleTabelaDisponibilidade()">Mostrar/Esconder Tabela</button>
+        <button class="botao" onclick="mostrarNovaDisponibilidade()">Inserir Nova Disponibilidade</button>
     </div>
 
-    <div id="novoUtilizador" style="display: none">
+    <div id="novaDisponibilidade" style="display: none">
 
-        <form action="/utilizadores" method="post" class="form-container">
-            <h3>Novo Utilizador</h3>
+        <form action="/disponibilidade" method="post" class="form-container">
+            <h3>Nova Disponibilidade</h3>
 
             <div>
-                <label for="nome">Nome Completo:</label>
-                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
-            </div>
-            <div>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
-            </div>
-            <div>
-                <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="senha" required>
-            </div>
-            <div>
-                <label for="perfil">Perfil:</label>
-                <select id="perfil" name="perfil" required>
-                    <option value="" disabled selected>Selecione o Perfil...</option>
-                    <option value="ADMIN">Administrador</option>
-                    <option value="GERENTE">Gerente</option>
-                    <option value="FUNCIONARIO">Funcionário</option>
+                <label for="diaDaSemana">Dia da Semana:</label>
+                <select id="diaDaSemana" name="diaDaSemana" required>
+                    <option value="" disabled selected>Selecione o Dia da Semana...</option>
+                    <option value="SEG">Segunda-feira</option>
+                    <option value="TER">Terça-feira</option>
+                    <option value="QUA">Quarta-feira</option>
+                    <option value="QUI">Quinta-feira</option>
+                    <option value="SEX">Sexta-feira</option>
+                    <option value="SAB">Sábado</option>
+                    <option value="DOM">Domingo</option>
                 </select>
             </div>
-            <button type="submit">Adicionar Utilizador</button>
+            <div>
+                <label for="horaInicio">Hora Início:</label>
+                <input type="time" id="horaInicio" name="horaInicio" required>
+            </div>
+            <div>
+                <label for="horaFim">Hora Fim:</label>
+                <input type="time" id="horaFim" name="horaFim" required>
+            </div>
+            <div>
+                <label for="funcionario">Funcionário:</label>
+                <select name="idFuncionario" id="funcionario" required>
+                    <option th:each = "funcionario : ${funcionarios}"
+                            th:value="${funcionario.idFuncionario}"
+                            th:text = "${funcionario.nome}">
+                    </option>
+                </select>
+            </div>
+            <button type="submit">Adicionar Disponibilidade</button>
         </form>
     </div>
     <script th:src="@{/js/script.js}"></script>
+
 </body>
 </html>
